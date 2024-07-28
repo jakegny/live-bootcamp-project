@@ -2,7 +2,9 @@ use axum::{routing::post, serve::Serve, Router};
 use std::error::Error;
 use tower_http::services::ServeDir;
 
+pub mod domain;
 pub mod routes;
+pub mod services;
 
 // This struct encapsulates our application-related logic.
 pub struct Application {
