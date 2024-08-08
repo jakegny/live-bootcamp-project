@@ -1,7 +1,5 @@
-mod data_stores;
-mod error;
-mod user;
-
-pub use data_stores::*;
-pub use error::*;
-pub use user::*;
+pub mod data_stores;
+pub mod email;
+pub mod error;
+pub mod password;
+pub mod user;

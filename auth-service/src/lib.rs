@@ -5,7 +5,8 @@ use axum::{
     serve::Serve,
     Json, Router,
 };
-use domain::AuthAPIError;
+
+use domain::error::AuthAPIError;
 use serde::{Deserialize, Serialize};
 use services::app_state::AppState;
 use std::error::Error;
