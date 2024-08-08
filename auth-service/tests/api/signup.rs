@@ -6,8 +6,6 @@ use crate::helpers::{get_random_email, TestApp};
 async fn should_return_422_if_malformed_input() {
     let app = TestApp::new().await;
 
-    let random_email = get_random_email();
-
     // TODO: add more malformed input test cases
     let test_cases = [serde_json::json!({
         "password": "password123",
@@ -72,7 +70,6 @@ async fn should_return_400_if_invalid_input() {
     // Create an array of invalid inputs. Then, iterate through the array and
     // make HTTP calls to the signup route. Assert a 400 HTTP status code is returned.
     let app = TestApp::new().await;
-    let random_email = get_random_email();
 
     let test_cases = [
         serde_json::json!({

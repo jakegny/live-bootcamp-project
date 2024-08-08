@@ -89,7 +89,7 @@ mod tests {
 
         let mut store = HashmapUserStore::default();
 
-        let _ = store.add_user(user.clone());
+        let _ = store.add_user(user.clone()).await;
         let result = store.validate_user(&user.email, &user.password).await;
 
         assert_eq!(result, Ok(()));
