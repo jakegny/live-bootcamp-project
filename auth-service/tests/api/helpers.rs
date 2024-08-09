@@ -1,5 +1,6 @@
 use auth_service::{
     services::{AppState, HashmapUserStore},
+    utils::constants::test,
     Application,
 };
 use reqwest::cookie::Jar;
@@ -18,7 +19,7 @@ impl TestApp {
         let user_store = Arc::new(RwLock::new(HashmapUserStore::default()));
         let app_state = AppState::new(user_store);
 
-        let app = Application::build(app_state, "127.0.0.1:0")
+        let app = Application::build(app_state, test::APP_ADDRESS)
             .await
             .expect("Failed to build app");
 
@@ -83,17 +84,21 @@ impl TestApp {
             .expect("Failed to execute request.")
     }
 
-    pub async fn get_verify_2fa(&self) -> reqwest::Response {
+    pub async fn post_verify_token<Body>(&self, body: &Body) -> reqwest::Response
+    where
+        Body: serde::Serialize,
+    {
         self.http_client
-            .post(&format!("{}/verify_2fa", &self.address))
+            .post(format!("{}/verify_token", &self.address))
+            .json(body)
             .send()
             .await
             .expect("Failed to execute request.")
     }
 
-    pub async fn get_verify_token(&self) -> reqwest::Response {
+    pub async fn get_verify_2fa(&self) -> reqwest::Response {
         self.http_client
-            .post(&format!("{}/verify_token", &self.address))
+            .post(&format!("{}/verify_2fa", &self.address))
             .send()
             .await
             .expect("Failed to execute request.")
