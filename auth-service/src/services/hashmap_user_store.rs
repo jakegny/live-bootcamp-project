@@ -56,7 +56,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_add_user() {
-        let email = Email::parse("test@email.com").unwrap();
+        let email = Email::parse("test@email.com".to_owned()).unwrap();
         let password = Password::parse("passwordtest").unwrap();
         let user = User::new(email, password, false);
 
@@ -69,7 +69,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_get_user() {
-        let email = Email::parse("test@email.com").unwrap();
+        let email = Email::parse("test@email.com".to_owned()).unwrap();
         let password = Password::parse("passwordtest").unwrap();
         let user = User::new(email, password, false);
 
@@ -83,7 +83,7 @@ mod tests {
 
     #[tokio::test]
     async fn test_validate_user() {
-        let email = Email::parse("test@email.com").unwrap();
+        let email = Email::parse("test@email.com".to_owned()).unwrap();
         let password = Password::parse("passwordtest").unwrap();
         let user = User::new(email, password, false);
 

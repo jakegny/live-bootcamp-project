@@ -7,7 +7,7 @@ pub struct Email {
 }
 
 impl Email {
-    pub fn parse(email: &str) -> Result<Self, String> {
+    pub fn parse(email: String) -> Result<Self, String> {
         let email = Email {
             value: email.to_string(),
         };
