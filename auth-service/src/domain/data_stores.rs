@@ -8,6 +8,12 @@ pub trait UserStore {
         -> Result<(), UserStoreError>;
 }
 
+#[async_trait::async_trait]
+pub trait BannedTokenStore {
+    async fn store_token(&mut self, token: &str) -> bool;
+    async fn is_token_banned(&self, token: &str) -> bool;
+}
+
 #[derive(Debug, PartialEq)]
 pub enum UserStoreError {
     UserAlreadyExists,

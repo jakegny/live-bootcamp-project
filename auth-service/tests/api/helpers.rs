@@ -1,5 +1,8 @@
 use auth_service::{
-    services::{AppState, HashmapUserStore},
+    services::{
+        app_state::AppState, hashmap_user_store::HashmapUserStore,
+        hashset_banned_token_store::HashSetBannedTokenStore,
+    },
     utils::constants::test,
     Application,
 };
@@ -17,7 +20,8 @@ pub struct TestApp {
 impl TestApp {
     pub async fn new() -> Self {
         let user_store = Arc::new(RwLock::new(HashmapUserStore::default()));
-        let app_state = AppState::new(user_store);
+        let banned_token_store = Arc::new(RwLock::new(HashSetBannedTokenStore::default()));
+        let app_state = AppState::new(user_store, banned_token_store);
 
         let app = Application::build(app_state, test::APP_ADDRESS)
             .await
